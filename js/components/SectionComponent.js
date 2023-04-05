@@ -1,31 +1,51 @@
-import Component from './Component.js';
+import inputModel from '../model/InputModel.js';
 
-export default class SectionComponent extends Component {
-  constructor(qs) {
-    super(qs);
+export default class SectionComponent {
+  $target;
 
-    this.addEvent('submit', (e) => {
-      this.eventCallback(e);
-    });
+  constructor(target) {
+    this.$target = target;
+
+    this.render();
+    this.addEvent();
   }
 
-  template() {
-    return `
-    <form action="submit">
+  render() {
+    this.$target.innerHTML = `
+    <form id="all" action="submit">
+      <label>Rendering All</label>
       <input type="text" />
+      <button>submit</button>
+    </form>
+    <form id="two" action="submit">
+      <label>Rendering Two</label>
       <input type="text" />
+      <button>submit</button>
+    </form>
+    <form id="one" action="submit">
+      <label>Rendering One</label>
       <input type="text" />
       <button>submit</button>
     </form>`;
   }
 
-  eventCallback(e) {
-    e.preventDefault();
+  addEvent() {
+    this.$target.addEventListener('submit', (e) => {
+      e.preventDefault();
 
-    const inputs = [...e.target]
-      .filter((element) => element.nodeName === 'INPUT')
-      .map((input) => input.value);
+      if (e.target.id === 'all') this.notifyAll(e);
+      if (e.target.id === 'two') this.notifyTwo(e);
+      if (e.target.id === 'one') this.notifyOne(e);
+    });
+  }
 
-    this.inputModel.setState(inputs);
+  notifyAll(e) {
+    inputModel.setState('ALL', [...e.target][0].value);
+  }
+  notifyTwo(e) {
+    inputModel.setState('TWO', [...e.target][0].value);
+  }
+  notifyOne(e) {
+    inputModel.setState('ONE', [...e.target][0].value);
   }
 }

@@ -1,23 +1,31 @@
 import { qs } from './util.js';
-import Component from './components/Component.js';
 import SectionComponent from './components/SectionComponent.js';
-import DivComponent from './components/DivComponent.js';
+import DivComponentA from './components/DivComponentA.js';
+import DivComponentB from './components/DivComponentB.js';
+import DivComponentC from './components/DivComponentC.js';
 
-export default class App extends Component {
-  constructor() {
-    super(qs('#app'));
+export default class App {
+  $target;
+
+  constructor(target) {
+    this.$target = target;
+
+    this.render();
 
     new SectionComponent(qs('section'));
-    new DivComponent(qs('.abc'));
+    new DivComponentA(qs('.a'));
+    new DivComponentB(qs('.b'));
+    new DivComponentC(qs('.c'));
   }
 
-  template() {
-    return `
+  render() {
+    this.$target.innerHTML = `
     <section></section>
-
-    <div class="abc"></div>
+    <div class="a"></div>
+    <div class="b"></div>
+    <div class="c"></div>
     `;
   }
 }
 
-new App();
+new App(qs('#app'));

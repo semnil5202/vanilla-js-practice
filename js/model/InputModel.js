@@ -1,14 +1,10 @@
 import Observer from '../Observer.js';
 
 class InputModel extends Observer {
-  static #instance;
   state;
 
   constructor() {
     super();
-
-    if (InputModel.#instance) return InputModel.#instance;
-    InputModel.#instance = this;
 
     this.state = '';
   }
@@ -17,10 +13,11 @@ class InputModel extends Observer {
     return this.state;
   }
 
-  setState(inputs) {
-    this.state = inputs.join('');
-    this.notify();
+  setState(key, newState) {
+    this.state = newState;
+    this.notify(key);
   }
 }
 
-export default new InputModel();
+const inputModel = new InputModel();
+export default inputModel;

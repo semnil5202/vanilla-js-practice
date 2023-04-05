@@ -1,15 +1,19 @@
 export default class Observer {
-  _observers;
+  observers;
 
   constructor() {
-    this._observers = [];
+    this.observers = {
+      ALL: [],
+      TWO: [],
+      ONE: [],
+    };
   }
 
-  subscribe(observer) {
-    this._observers.push(observer);
+  subscribe(key, observer) {
+    this.observers[key].push(observer);
   }
 
-  notify() {
-    this._observers.forEach((observer) => observer());
+  notify(key) {
+    this.observers[key].forEach((observer) => observer());
   }
 }

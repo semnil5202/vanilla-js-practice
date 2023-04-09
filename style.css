@@ -1,1 +1,28 @@
+.container-num-1 {
+  display: block;
+  width: 400px;
+  height: 250px;
+  background-color: aliceblue;
+}
 
+.container-num-2 {
+  display: block;
+  width: 250px;
+  height: 250px;
+  background-color: lightcoral;
+}
+
+.container-num-3 {
+  display: block;
+  width: 400px;
+  height: 250px;
+  background-color: lightgreen;
+}
+
+.item-1 {
+  display: block;
+  width: auto;
+  height: 18px;
+  background-color: black;
+  color: white;
+}

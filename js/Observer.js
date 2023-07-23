@@ -9,7 +9,7 @@ export default class Observer {
     this._observers.push(observer);
   }
 
-  notify() {
-    this._observers.forEach((observer) => observer());
+  notify(newData) {
+    this._observers.forEach((observer) => observer(newData));
   }
 }

@@ -19,7 +19,7 @@ class InputModel extends Observer {
 
   setState(inputs) {
     this.state = inputs.join('');
-    this.notify();
+    this.notify(this.state);
   }
 }
 

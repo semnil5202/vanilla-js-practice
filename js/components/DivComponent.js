@@ -11,8 +11,4 @@ export default class DivComponent extends Component {
     <span>${this.inputModel.getState()}</span>
     `;
   }
-
-  inputTempate() {
-    return;
-  }
 }
